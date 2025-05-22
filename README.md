@@ -144,9 +144,9 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📞 Contact
 
-Project Creator - [Your Name](mailto:nisanth252025@gmail.com)
+Project Creator - [Nisanth S](mailto:nisanth252025@gmail.com)
 
-Project Link: [https://github.com/yourusername/VerbaSphere-Blog-Page](https://github.com/Nisanth-2025/VerbaSphere-Blog-Page)
+Project Link: [https://github.com/Nisanth-2025/VerbaSphere-Blog-Page](https://github.com/Nisanth-2025/VerbaSphere-Blog-Page)
 
 ---
 
