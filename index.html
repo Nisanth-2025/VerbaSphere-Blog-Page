@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>VerbaSphere Blog</title>    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>        <div class="logo">
+            <h1>VerbaSphere Blog</h1>
+        </div><nav>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <button class="login-btn">Login</button>
+            <button class="signup-btn">Sign Up</button>
+        </div>
+        <div class="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+    <div class="menu-touch-overlay"></div>
+
+    <main>
+        <section class="blog-hero">
+            <h2>Discover Inspiring Stories</h2>
+            <p>Share your thoughts and connect with our community</p>
+            <button class="upload-btn">Upload Blog</button>
+        </section>
+
+        <section class="featured-blogs">
+            <h2>Featured Articles</h2>
+            <p class="touch-hint">Swipe left/right to browse articles • Double-tap to like</p>
+            <div class="blog-grid">
+                <!-- Blog cards will be dynamically generated with JavaScript -->
+                <div class="swipe-indicator swipe-left"><i class="fas fa-chevron-left"></i></div>
+                <div class="swipe-indicator swipe-right"><i class="fas fa-chevron-right"></i></div>                <div class="loading-spinner"></div>            </div>
+        </section>
+    </main>
+<footer>
+        <div class="footer-bottom">
+            <p class="copyright-text">© 2025 VerbaSphere Blog. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal for blog upload -->
+    <div class="modal" id="uploadModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Upload New Blog</h2>
+            <form id="blog-form">
+                <div class="form-group">
+                    <label for="blog-title">Blog Title</label>
+                    <input type="text" id="blog-title" required maxlength="100">
+                </div>
+                <div class="form-group">
+                    <label for="author-name">Author Name</label>
+                    <input type="text" id="author-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="blog-image">Blog Image</label>
+                    <input type="file" id="blog-image" accept="image/*">
+                    <div class="image-preview" id="image-preview"></div>
+                </div>
+                <div class="form-group">
+                    <label for="blog-content">Blog Content (Max 500 characters)</label>
+                    <textarea id="blog-content" required maxlength="500"></textarea>
+                    <div class="char-count"><span id="char-counter">0</span>/500</div>
+                </div>
+                <button type="submit" class="submit-btn">Publish Blog</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for login -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+                <p class="form-footer">Don't have an account? <a href="#" id="switch-to-signup">Sign up</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for signup -->
+    <div class="modal" id="signupModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Sign Up</h2>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm-password">Confirm Password</label>
+                    <input type="password" id="signup-confirm-password" required>
+                </div>
+                <button type="submit" class="submit-btn">Create Account</button>
+                <p class="form-footer">Already have an account? <a href="#" id="switch-to-login">Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Blog post template that will be cloned by JavaScript -->
+    <template id="blog-template">
+        <div class="blog-card">
+            <img src="" alt="Blog image" class="blog-image">
+            <div class="blog-content">
+                <h3 class="blog-title"></h3>
+                <div class="blog-meta">
+                    <span class="blog-author"></span>
+                    <span class="blog-date"></span>
+                </div>
+                <p class="blog-excerpt"></p>
+                <div class="blog-actions">
+                    <button class="read-more-btn">Read More</button>
+                    <div class="blog-interactions">
+                        <span class="likes"><i class="far fa-heart"></i> <span class="like-count">0</span></span>
+                        <span class="comments"><i class="far fa-comment"></i> <span class="comment-count">0</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="comments-section">
+                <h4>Comments</h4>
+                <div class="comments-list">
+                    <!-- Comments will be added here by JavaScript -->
+                </div>
+                <form class="comment-form">
+                    <textarea placeholder="Write a comment..." class="comment-input" maxlength="200"></textarea>                    <button type="submit" class="comment-submit">Post</button>                </form>
+            </div>
+        </div>
+    </template>    <script src="./js/script.js"></script>
+</body>
+</html>
+
