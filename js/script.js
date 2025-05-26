@@ -644,7 +644,92 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
     }
-  
     // Load draft when page loads
     loadSavedDraft();
+
+    // Enhanced Footer Functionality
+    const scrollToTopBtn = document.getElementById("scroll-to-top");
+    const newsletterForm = document.getElementById("newsletter-form");
+    const newsletterSuccess = document.querySelector(".newsletter-success");
+
+    // Scroll to Top Button
+    if (scrollToTopBtn) {
+      // Show/hide scroll-to-top button based on scroll position
+      window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 300) {
+          scrollToTopBtn.classList.add("visible");
+        } else {
+          scrollToTopBtn.classList.remove("visible");
+        }
+      });
+
+      // Smooth scroll to top when button is clicked
+      scrollToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      });
+    }
+
+    // Newsletter Form Submission
+    if (newsletterForm) {
+      newsletterForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const emailInput = newsletterForm.querySelector("input[type='email']");
+        const email = emailInput.value.trim();
+
+        if (email && isValidEmail(email)) {
+          // In a real application, this would submit to a server
+          // For demo, just show success message
+          emailInput.value = "";
+          newsletterSuccess.style.display = "block";
+          
+          // Hide success message after 3 seconds
+          setTimeout(() => {
+            newsletterSuccess.style.display = "none";
+          }, 3000);
+        }
+      });
+    }
+
+    // Email validation helper function
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    // Footer link animations
+    const footerLinks = document.querySelectorAll(".footer-section.links a, .footer-section.resources a");
+    
+    footerLinks.forEach(link => {
+      link.addEventListener("mouseenter", () => {
+        const icon = link.querySelector("i");
+        if (icon) {
+          icon.style.transform = "translateX(5px)";
+          icon.style.transition = "transform 0.3s ease";
+        }
+      });
+
+      link.addEventListener("mouseleave", () => {
+        const icon = link.querySelector("i");
+        if (icon) {
+          icon.style.transform = "translateX(0)";
+        }
+      });
+    });
+
+    // Social icons hover effects
+    const socialIcons = document.querySelectorAll(".social-icons a");
+    
+    socialIcons.forEach(icon => {
+      icon.addEventListener("mouseenter", () => {
+        icon.style.transform = "translateY(-3px) rotate(8deg)";
+      });
+
+      icon.addEventListener("mouseleave", () => {
+        icon.style.transform = "translateY(0) rotate(0)";
+      });
+    });
+
   });
