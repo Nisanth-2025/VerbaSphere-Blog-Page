@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const blogForm = document.getElementById("blog-form");
     const saveDraftBtn = document.getElementById("save-draft");
     const previewBlogBtn = document.getElementById("preview-blog");
+    const themeToggle = document.getElementById("theme-toggle");
   
     // Mobile Menu Toggle
     if (mobileMenuBtn && menuOverlay) {
@@ -40,10 +41,8 @@ document.addEventListener("DOMContentLoaded", function () {
       blogTitle.addEventListener("input", function () {
         const length = this.value.length;
         let strength = 0;
-        let feedbackText = "";
-  
-        // Update character count
-        characterCount.textContent = ${length}/100;
+        let feedbackText = "";        // Update character count
+        characterCount.textContent = `${length}/100`;
   
         // Calculate title strength
         if (length > 0) {
@@ -65,10 +64,8 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         } else {
           feedbackText = "Make your title compelling";
-        }
-  
-        // Update strength meter
-        titleStrengthMeter.style.width = ${strength}%;
+        }        // Update strength meter
+        titleStrengthMeter.style.width = `${strength}%`;
   
         // Update color based on strength
         if (strength < 40) {
@@ -216,16 +213,14 @@ document.addEventListener("DOMContentLoaded", function () {
       // Click on upload area to trigger file input
       imageUploadArea.addEventListener("click", function () {
         coverImageInput.click();
-      });
-  
-      // Handle file selection
+      });      // Handle file selection
       coverImageInput.addEventListener("change", function () {
         const file = this.files[0];
         if (file) {
           const reader = new FileReader();
           reader.onload = function (e) {
             // Show preview
-            imagePreview.innerHTML = <img src="${e.target.result}" alt="Cover Image Preview">;
+            imagePreview.innerHTML = `<img src="${e.target.result}" alt="Cover Image Preview">`;
             imagePreview.style.display = "flex";
             imageEditor.style.display = "flex";
           };
@@ -266,12 +261,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const file = dt.files[0];
   
         if (file && file.type.match("image.*")) {
-          coverImageInput.files = dt.files;
-  
-          const reader = new FileReader();
+          coverImageInput.files = dt.files;          const reader = new FileReader();
           reader.onload = function (e) {
             // Show preview
-            imagePreview.innerHTML = <img src="${e.target.result}" alt="Cover Image Preview">;
+            imagePreview.innerHTML = `<img src="${e.target.result}" alt="Cover Image Preview">`;
             imagePreview.style.display = "flex";
             imageEditor.style.display = "flex";
           };
@@ -397,11 +390,10 @@ document.addEventListener("DOMContentLoaded", function () {
             const url = prompt("Enter image URL:");
             if (url) {
               document.execCommand("insertImage", false, url);
-            }
-          } else if (format === "video") {
+            }          } else if (format === "video") {
             const url = prompt("Enter video embed URL:");
             if (url) {
-              const videoEmbed = <div class="video-embed"><iframe src="${url}" frameborder="0" allowfullscreen></iframe></div>;
+              const videoEmbed = `<div class="video-embed"><iframe src="${url}" frameborder="0" allowfullscreen></iframe></div>`;
               document.execCommand("insertHTML", false, videoEmbed);
             }
           } else if (format === "table") {
@@ -488,7 +480,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const wordCountNum = words.length;
         const readingTime = Math.ceil(wordCountNum / 200); // Average reading speed
   
-        wordCount.textContent = ${wordCountNum} words | ${readingTime} min read;
+        wordCount.textContent = `${wordCountNum} words | ${readingTime} min read`;
       }
   
       function updatePreview() {
@@ -716,9 +708,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (icon) {
           icon.style.transform = "translateX(0)";
         }
-      });
-    });
-
+      });    });    
+    
     // Social icons hover effects
     const socialIcons = document.querySelectorAll(".social-icons a");
     
@@ -731,5 +722,38 @@ document.addEventListener("DOMContentLoaded", function () {
         icon.style.transform = "translateY(0) rotate(0)";
       });
     });
+    
+    // Theme Toggle Functionality
+    if (themeToggle) {
+      // Check for saved theme preference or respect OS preference
+      const savedTheme = localStorage.getItem("theme");
+      
+      if (savedTheme) {
+        // Apply saved theme
+        document.documentElement.setAttribute("data-theme", savedTheme);
+        if (savedTheme === "dark") {
+          themeToggle.checked = true;
+        }
+      } else {
+        // Check if user prefers dark mode
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (prefersDark) {
+          document.documentElement.setAttribute("data-theme", "dark");
+          themeToggle.checked = true;
+          localStorage.setItem("theme", "dark");
+        }
+      }
+      
+      // Toggle theme when the checkbox changes
+      themeToggle.addEventListener("change", function() {
+        if (this.checked) {
+          document.documentElement.setAttribute("data-theme", "dark");
+          localStorage.setItem("theme", "dark");
+        } else {
+          document.documentElement.setAttribute("data-theme", "light");
+          localStorage.setItem("theme", "light");
+        }
+      });
+    }
 
   });
