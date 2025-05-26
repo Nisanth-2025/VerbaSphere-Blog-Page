@@ -1,157 +1,429 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>VerbaSphere Blog</title>    <link rel="stylesheet" href="./css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
-    <header>        <div class="logo">
-            <h1>VerbaSphere Blog</h1>
-        </div><nav>
-            <ul class="nav-links">
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
-        </nav>
-        <div class="auth-buttons">
-            <button class="login-btn">Login</button>
-            <button class="signup-btn">Sign Up</button>
-        </div>
-        <div class="mobile-menu">
-            <i class="fas fa-bars"></i>
-        </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VerbaSphere - Write Your Blog</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <h1>VerbaSphere</h1>
+        <span class="tagline">Where words take flight</span>
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#" class="active">Create</a></li>
+          <li><a href="#">Explore</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="auth-buttons">
+        <button class="login-btn">Login</button>
+        <button class="signup-btn">Sign Up</button>
+      </div>
+      <div class="mobile-menu">
+        <i class="fas fa-bars"></i>
+      </div>
     </header>
-    <div class="menu-touch-overlay"></div>
+    <div class="menu-overlay"></div>
 
     <main>
-        <section class="blog-hero">
-            <h2>Discover Inspiring Stories</h2>
-            <p>Share your thoughts and connect with our community</p>
-            <button class="upload-btn">Upload Blog</button>
-        </section>
-
-        <section class="featured-blogs">
-            <h2>Featured Articles</h2>
-            <p class="touch-hint">Swipe left/right to browse articles • Double-tap to like</p>
-            <div class="blog-grid">
-                <!-- Blog cards will be dynamically generated with JavaScript -->
-                <div class="swipe-indicator swipe-left"><i class="fas fa-chevron-left"></i></div>
-                <div class="swipe-indicator swipe-right"><i class="fas fa-chevron-right"></i></div>                <div class="loading-spinner"></div>            </div>
-        </section>
-    </main>
-<footer>
-        <div class="footer-bottom">
-            <p class="copyright-text">© 2025 VerbaSphere Blog. All rights reserved.</p>
+      <section class="hero">
+        <div class="hero-content">
+          <h2>Share Your Voice</h2>
+          <p>Transform your ideas into beautifully crafted blogs</p>
+          <a href="#blog-editor" class="cta-btn">Start Writing</a>
         </div>
+        <div class="hero-image">
+          <img
+            src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
+            alt="Writing blog"
+          />
+        </div>
+      </section>
+
+      <section class="features">
+        <div class="feature-card">
+          <i class="fas fa-feather-alt"></i>
+          <h3>Intuitive Editor</h3>
+          <p>Rich text formatting with real-time preview</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-image"></i>
+          <h3>Visual Enhancement</h3>
+          <p>Easily embed images and media content</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-tags"></i>
+          <h3>Smart Tagging</h3>
+          <p>Categorize your content for better reach</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-share-alt"></i>
+          <h3>One-Click Sharing</h3>
+          <p>Instantly share to multiple platforms</p>
+        </div>
+      </section>
+
+      <section class="blog-creation" id="blog-editor">
+        <h2>Create Your Masterpiece</h2>
+
+        <form id="blog-form">
+          <div class="form-group">
+            <label for="blog-title">Title</label>
+            <input
+              type="text"
+              id="blog-title"
+              placeholder="An engaging title for your blog..."
+              required
+            />
+            <div class="input-feedback">
+              <span class="character-count">0/100</span>
+              <div class="title-strength-meter">
+                <div class="meter-fill"></div>
+              </div>
+              <span class="title-feedback">Make your title compelling</span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="blog-category">Category</label>
+              <select id="blog-category" required>
+                <option value="" selected disabled>Select a category</option>
+                <option value="technology">Technology</option>
+                <option value="lifestyle">Lifestyle</option>
+                <option value="travel">Travel</option>
+                <option value="food">Food & Cooking</option>
+                <option value="health">Health & Wellness</option>
+                <option value="finance">Finance</option>
+                <option value="art">Art & Culture</option>
+                <option value="education">Education</option>
+                <option value="science">Science</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="custom">Create New Category</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="blog-subcategory">Sub-category</label>
+              <select id="blog-subcategory">
+                <option value="" selected disabled>
+                  First select a category
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Blog Cover Image</label>
+            <div class="image-upload-container">
+              <div class="image-upload-area">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Drag & drop your image here or click to browse</p>
+                <small>Recommended: 1200×800px (Max 5MB)</small>
+                <input type="file" id="cover-image" accept="image/*" hidden />
+              </div>
+              <div class="image-preview"></div>
+              <div class="image-editor">
+                <button
+                  type="button"
+                  class="image-edit-btn"
+                  data-action="filter"
+                >
+                  <i class="fas fa-magic"></i> Filters
+                </button>
+                <button type="button" class="image-edit-btn" data-action="crop">
+                  <i class="fas fa-crop"></i> Crop
+                </button>
+                <button type="button" class="image-edit-btn" data-action="text">
+                  <i class="fas fa-font"></i> Add Text
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Tags</label>
+            <div class="tags-container">
+              <input
+                type="text"
+                id="tag-input"
+                placeholder="Add tags to increase discoverability..."
+              />
+              <div class="tags-wrapper"></div>
+            </div>
+            <div class="tag-suggestions">
+              <span>Trending:</span>
+              <button type="button" class="tag-suggestion">
+                #sustainability
+              </button>
+              <button type="button" class="tag-suggestion">#innovation</button>
+              <button type="button" class="tag-suggestion">#2025trends</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Content</label>
+            <div class="editor-container">
+              <div class="editor-toolbar">
+                <div class="toolbar-group">
+                  <button type="button" class="toolbar-btn" data-format="bold">
+                    <i class="fas fa-bold"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="toolbar-btn"
+                    data-format="italic"
+                  >
+                    <i class="fas fa-italic"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="toolbar-btn"
+                    data-format="underline"
+                  >
+                    <i class="fas fa-underline"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="toolbar-btn"
+                    data-format="strikethrough"
+                  >
+                    <i class="fas fa-strikethrough"></i>
+                  </button>
+                </div>
+
+                <div class="toolbar-group">
+                  <button
+                    type="button"
+                    class="toolbar-btn"
+                    data-format="heading-1"
+                  >
+                    H1
+                  </button>
+                  <button
+                    type="button"
+                    class="toolbar-btn"
+                    data-format="heading-2"
+                  >
+                    H2
+                  </button>
+                  <button
+                    type="button"
+                    class="toolbar-btn"
+                    data-format="heading-3"
+                  >
+                    H3
+                  </button>
+                  <button
+                    type="button"
+                    class="toolbar-btn"
+                    data-format="paragraph"
+                  >
+                    ¶
+                  </button>
+                </div>
+
+                <div class="toolbar-group">
+                  <button
+                    type="button"
+                    class="toolbar-btn"
+                    data-format="align-left"
+                  >
+                    <i class="fas fa-align-left"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="toolbar-btn"
+                    data-format="align-center"
+                  >
+                    <i class="fas fa-align-center"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="toolbar-btn"
+                    data-format="align-right"
+                  >
+                    <i class="fas fa-align-right"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="toolbar-btn"
+                    data-format="align-justify"
+                  >
+                    <i class="fas fa-align-justify"></i>
+                  </button>
+                </div>
+
+                <div class="toolbar-group">
+                  <button
+                    type="button"
+                    class="toolbar-btn"
+                    data-format="list-unordered"
+                  >
+                    <i class="fas fa-list-ul"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="toolbar-btn"
+                    data-format="list-ordered"
+                  >
+                    <i class="fas fa-list-ol"></i>
+                  </button>
+                  <button type="button" class="toolbar-btn" data-format="quote">
+                    <i class="fas fa-quote-right"></i>
+                  </button>
+                  <button type="button" class="toolbar-btn" data-format="code">
+                    <i class="fas fa-code"></i>
+                  </button>
+                </div>
+
+                <div class="toolbar-group">
+                  <button type="button" class="toolbar-btn" data-format="link">
+                    <i class="fas fa-link"></i>
+                  </button>
+                  <button type="button" class="toolbar-btn" data-format="image">
+                    <i class="fas fa-image"></i>
+                  </button>
+                  <button type="button" class="toolbar-btn" data-format="video">
+                    <i class="fas fa-video"></i>
+                  </button>
+                  <button type="button" class="toolbar-btn" data-format="table">
+                    <i class="fas fa-table"></i>
+                  </button>
+                </div>
+
+                <div class="toolbar-group view-toggle">
+                  <button
+                    type="button"
+                    class="view-btn active"
+                    data-view="write"
+                  >
+                    Write
+                  </button>
+                  <button type="button" class="view-btn" data-view="preview">
+                    Preview
+                  </button>
+                  <button type="button" class="view-btn" data-view="split">
+                    Split
+                  </button>
+                </div>
+              </div>
+
+              <div class="editor-content-container">
+                <div class="editor-writing-view active">
+                  <div
+                    id="editor-content"
+                    contenteditable="true"
+                    placeholder="Start writing your amazing blog post here..."
+                  ></div>
+                </div>
+                <div class="editor-preview-view">
+                  <div id="preview-content"></div>
+                </div>
+              </div>
+
+              <div class="editor-footer">
+                <div class="word-count">0 words | 0 min read</div>
+                <div class="content-analysis">
+                  <div class="seo-score">
+                    <span>SEO Score:</span>
+                    <div class="score-circles">
+                      <span class="circle filled"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                    </div>
+                  </div>
+                  <div class="readability-score">
+                    <span>Readability:</span>
+                    <div class="score-circles">
+                      <span class="circle filled"></span>
+                      <span class="circle filled"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="blog-excerpt"
+                >Excerpt (Short summary for previews)</label
+              >
+              <textarea
+                id="blog-excerpt"
+                rows="3"
+                maxlength="200"
+                placeholder="Write a compelling summary..."
+              ></textarea>
+              <div class="char-count">
+                <span id="excerpt-char-count">0</span>/200
+              </div>
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            <button type="button" id="save-draft" class="secondary-btn">
+              <i class="fas fa-save"></i> Save Draft
+            </button>
+            <button type="button" id="preview-blog" class="secondary-btn">
+              <i class="fas fa-eye"></i> Preview
+            </button>
+            <button type="submit" id="publish-blog" class="primary-btn">
+              <i class="fas fa-paper-plane"></i> Publish Blog
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>VerbaSphere</h3>
+          <p>
+            A platform for writers, thinkers, and creators to share their voice
+            with the world.
+          </p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Explore</a></li>
+            <li><a href="#">Create</a></li>
+            <li><a href="#">About Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 VerbaSphere. All rights reserved.</p>
+      </div>
     </footer>
 
-    <!-- Modal for blog upload -->
-    <div class="modal" id="uploadModal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Upload New Blog</h2>
-            <form id="blog-form">
-                <div class="form-group">
-                    <label for="blog-title">Blog Title</label>
-                    <input type="text" id="blog-title" required maxlength="100">
-                </div>
-                <div class="form-group">
-                    <label for="author-name">Author Name</label>
-                    <input type="text" id="author-name" required>
-                </div>
-                <div class="form-group">
-                    <label for="blog-image">Blog Image</label>
-                    <input type="file" id="blog-image" accept="image/*">
-                    <div class="image-preview" id="image-preview"></div>
-                </div>
-                <div class="form-group">
-                    <label for="blog-content">Blog Content (Max 500 characters)</label>
-                    <textarea id="blog-content" required maxlength="500"></textarea>
-                    <div class="char-count"><span id="char-counter">0</span>/500</div>
-                </div>
-                <button type="submit" class="submit-btn">Publish Blog</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal for login -->
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Login</h2>
-            <form id="login-form">
-                <div class="form-group">
-                    <label for="login-email">Email</label>
-                    <input type="email" id="login-email" required>
-                </div>
-                <div class="form-group">
-                    <label for="login-password">Password</label>
-                    <input type="password" id="login-password" required>
-                </div>
-                <button type="submit" class="submit-btn">Login</button>
-                <p class="form-footer">Don't have an account? <a href="#" id="switch-to-signup">Sign up</a></p>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal for signup -->
-    <div class="modal" id="signupModal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Sign Up</h2>
-            <form id="signup-form">
-                <div class="form-group">
-                    <label for="signup-name">Full Name</label>
-                    <input type="text" id="signup-name" required>
-                </div>
-                <div class="form-group">
-                    <label for="signup-email">Email</label>
-                    <input type="email" id="signup-email" required>
-                </div>
-                <div class="form-group">
-                    <label for="signup-password">Password</label>
-                    <input type="password" id="signup-password" required>
-                </div>
-                <div class="form-group">
-                    <label for="signup-confirm-password">Confirm Password</label>
-                    <input type="password" id="signup-confirm-password" required>
-                </div>
-                <button type="submit" class="submit-btn">Create Account</button>
-                <p class="form-footer">Already have an account? <a href="#" id="switch-to-login">Login</a></p>
-            </form>
-        </div>
-    </div>
-
-    <!-- Blog post template that will be cloned by JavaScript -->
-    <template id="blog-template">
-        <div class="blog-card">
-            <img src="" alt="Blog image" class="blog-image">
-            <div class="blog-content">
-                <h3 class="blog-title"></h3>
-                <div class="blog-meta">
-                    <span class="blog-author"></span>
-                    <span class="blog-date"></span>
-                </div>
-                <p class="blog-excerpt"></p>
-                <div class="blog-actions">
-                    <button class="read-more-btn">Read More</button>
-                    <div class="blog-interactions">
-                        <span class="likes"><i class="far fa-heart"></i> <span class="like-count">0</span></span>
-                        <span class="comments"><i class="far fa-comment"></i> <span class="comment-count">0</span></span>
-                    </div>
-                </div>
-            </div>
-            <div class="comments-section">
-                <h4>Comments</h4>
-                <div class="comments-list">
-                    <!-- Comments will be added here by JavaScript -->
-                </div>
-                <form class="comment-form">
-                    <textarea placeholder="Write a comment..." class="comment-input" maxlength="200"></textarea>                    <button type="submit" class="comment-submit">Post</button>                </form>
-            </div>
-        </div>
-    </template>    <script src="./js/script.js"></script>
-</body>
+    <script src="./js/script.js"></script>
+  </body>
 </html>
-
