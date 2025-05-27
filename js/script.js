@@ -28,7 +28,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const saveDraftBtn = document.getElementById("save-draft");
     const previewBlogBtn = document.getElementById("preview-blog");
     const themeToggle = document.getElementById("theme-toggle");
-  
+
+    // Keyboard Shortcuts
+    document.addEventListener('keydown', function(e) {
+        // Ctrl+S to save draft
+        if (e.ctrlKey && e.key === 's') {
+            e.preventDefault(); // Prevent default browser save
+            if (saveDraftBtn) {
+                saveDraftBtn.click(); // Trigger save draft
+            }
+        }
+    });
+
     // Mobile Menu Toggle
     if (mobileMenuBtn && menuOverlay) {
       mobileMenuBtn.addEventListener("click", function () {
